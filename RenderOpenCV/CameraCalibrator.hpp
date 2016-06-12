@@ -15,6 +15,7 @@ using namespace std;
 
 class CameraCalibrator {
     
+    enum Pattern { CHESSBOARD, CIRCLES_GRID, ASYMMETRIC_CIRCLES_GRID };
 public:
     CameraCalibrator() : flag(0), mustInitUndistort(true) {};
     
@@ -51,6 +52,9 @@ public:
     }
     
 private:
+    
+    enum { DETECTION = 0, CAPTURING = 1, CALIBRATED = 2 };
+    
     // input points
     vector<vector<cv::Point3f>> objectPoints;
     vector<vector<cv::Point2f>> imagePoints;

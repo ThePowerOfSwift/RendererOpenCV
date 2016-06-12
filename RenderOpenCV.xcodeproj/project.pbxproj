@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D037DCC1CF47DC200E24C13 /* CameraCalibrator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D037DCB1CF47DC200E24C13 /* CameraCalibrator.cpp */; };
+		5D037DD11CF4B20500E24C13 /* OptionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D037DD01CF4B20500E24C13 /* OptionBase.m */; };
+		5D037DD41CF4B2A300E24C13 /* OptionCalibration.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D037DD31CF4B2A300E24C13 /* OptionCalibration.m */; };
+		5D037DD71CF4B2C900E24C13 /* OptionMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D037DD61CF4B2C900E24C13 /* OptionMarker.m */; };
+		5D037DDB1CF4CFBF00E24C13 /* RenderManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5D037DDA1CF4CFBF00E24C13 /* RenderManager.mm */; };
+		5D037DE01CF4DB4200E24C13 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D037DDF1CF4DB4200E24C13 /* OpenGLES.framework */; };
+		5D037DE21CF4DBC400E24C13 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D037DE11CF4DBC400E24C13 /* GLKit.framework */; };
+		5D037DE41CF4DBDB00E24C13 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D037DE31CF4DBDB00E24C13 /* QuartzCore.framework */; };
+		5D037DE71CF4DC4000E24C13 /* CameraCalibration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D037DE51CF4DC4000E24C13 /* CameraCalibration.cpp */; };
 		5D7BE32A1CF3681C00302C37 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BE3291CF3681C00302C37 /* main.m */; };
 		5D7BE32D1CF3681C00302C37 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BE32C1CF3681C00302C37 /* AppDelegate.mm */; };
 		5D7BE3301CF3681C00302C37 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BE32F1CF3681C00302C37 /* ViewController.mm */; };
@@ -26,13 +35,12 @@
 		5D7BE3721CF3789800302C37 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D7BE3711CF3789800302C37 /* Foundation.framework */; };
 		5D7BE3741CF3789E00302C37 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D7BE3731CF3789E00302C37 /* UIKit.framework */; };
 		5D7CAF7B1CF3802600EF9B29 /* CalibrationWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5D7CAF781CF3802600EF9B29 /* CalibrationWrapper.mm */; };
-		5D7CAF7C1CF3802600EF9B29 /* CameraCalibrator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D7CAF7A1CF3802600EF9B29 /* CameraCalibrator.cpp */; };
 		5D7CAF7F1CF3805900EF9B29 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5D7CAF7E1CF3805900EF9B29 /* UIImage+OpenCV.mm */; };
 		5D7CAF831CF3820300EF9B29 /* GeometryTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D7CAF811CF3820300EF9B29 /* GeometryTypes.cpp */; };
 		5D7CAF8A1CF3820900EF9B29 /* MarkerDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D7CAF841CF3820900EF9B29 /* MarkerDetector.cpp */; };
 		5D7CAF8B1CF3820900EF9B29 /* Marker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D7CAF861CF3820900EF9B29 /* Marker.cpp */; };
 		5D7CAF8C1CF3820900EF9B29 /* Perimetr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D7CAF881CF3820900EF9B29 /* Perimetr.cpp */; };
-		5D7CAF8F1CF3824300EF9B29 /* CameraCalibration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D7CAF8D1CF3824300EF9B29 /* CameraCalibration.cpp */; };
+		5D7CAF921CF3843D00EF9B29 /* Calibrator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D7CAF901CF3843D00EF9B29 /* Calibrator.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +61,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5D037DCA1CF47DB700E24C13 /* CameraCalibrator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CameraCalibrator.hpp; sourceTree = "<group>"; };
+		5D037DCB1CF47DC200E24C13 /* CameraCalibrator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraCalibrator.cpp; sourceTree = "<group>"; };
+		5D037DCF1CF4B20500E24C13 /* OptionBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptionBase.h; path = "User Interface/Options/OptionBase.h"; sourceTree = "<group>"; };
+		5D037DD01CF4B20500E24C13 /* OptionBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OptionBase.m; path = "User Interface/Options/OptionBase.m"; sourceTree = "<group>"; };
+		5D037DD21CF4B2A300E24C13 /* OptionCalibration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptionCalibration.h; path = "User Interface/Options/OptionCalibration.h"; sourceTree = "<group>"; };
+		5D037DD31CF4B2A300E24C13 /* OptionCalibration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OptionCalibration.m; path = "User Interface/Options/OptionCalibration.m"; sourceTree = "<group>"; };
+		5D037DD51CF4B2C900E24C13 /* OptionMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptionMarker.h; path = "User Interface/Options/OptionMarker.h"; sourceTree = "<group>"; };
+		5D037DD61CF4B2C900E24C13 /* OptionMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OptionMarker.m; path = "User Interface/Options/OptionMarker.m"; sourceTree = "<group>"; };
+		5D037DD91CF4CFBF00E24C13 /* RenderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenderManager.h; path = Rendering/RenderManager.h; sourceTree = "<group>"; };
+		5D037DDA1CF4CFBF00E24C13 /* RenderManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = RenderManager.mm; path = Rendering/RenderManager.mm; sourceTree = "<group>"; };
+		5D037DDF1CF4DB4200E24C13 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		5D037DE11CF4DBC400E24C13 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		5D037DE31CF4DBDB00E24C13 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5D037DE51CF4DC4000E24C13 /* CameraCalibration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraCalibration.cpp; sourceTree = "<group>"; };
+		5D037DE61CF4DC4000E24C13 /* CameraCalibration.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CameraCalibration.hpp; sourceTree = "<group>"; };
 		5D7BE3251CF3681C00302C37 /* RenderOpenCV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RenderOpenCV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D7BE3291CF3681C00302C37 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5D7BE32B1CF3681C00302C37 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -83,8 +106,6 @@
 		5D7BE3731CF3789E00302C37 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		5D7CAF771CF3802600EF9B29 /* CalibrationWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalibrationWrapper.h; sourceTree = "<group>"; };
 		5D7CAF781CF3802600EF9B29 /* CalibrationWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CalibrationWrapper.mm; sourceTree = "<group>"; };
-		5D7CAF791CF3802600EF9B29 /* CameraCalibrator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CameraCalibrator.hpp; sourceTree = "<group>"; };
-		5D7CAF7A1CF3802600EF9B29 /* CameraCalibrator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraCalibrator.cpp; sourceTree = "<group>"; };
 		5D7CAF7D1CF3805900EF9B29 /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
 		5D7CAF7E1CF3805900EF9B29 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
 		5D7CAF811CF3820300EF9B29 /* GeometryTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GeometryTypes.cpp; sourceTree = "<group>"; };
@@ -95,8 +116,8 @@
 		5D7CAF871CF3820900EF9B29 /* Marker.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Marker.hpp; sourceTree = "<group>"; };
 		5D7CAF881CF3820900EF9B29 /* Perimetr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Perimetr.cpp; sourceTree = "<group>"; };
 		5D7CAF891CF3820900EF9B29 /* Perimetr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Perimetr.hpp; sourceTree = "<group>"; };
-		5D7CAF8D1CF3824300EF9B29 /* CameraCalibration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraCalibration.cpp; sourceTree = "<group>"; };
-		5D7CAF8E1CF3824300EF9B29 /* CameraCalibration.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CameraCalibration.hpp; sourceTree = "<group>"; };
+		5D7CAF901CF3843D00EF9B29 /* Calibrator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Calibrator.cpp; path = Calibrator/Calibrator.cpp; sourceTree = "<group>"; };
+		5D7CAF911CF3843D00EF9B29 /* Calibrator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Calibrator.hpp; path = Calibrator/Calibrator.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +125,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D037DE41CF4DBDB00E24C13 /* QuartzCore.framework in Frameworks */,
+				5D037DE21CF4DBC400E24C13 /* GLKit.framework in Frameworks */,
+				5D037DE01CF4DB4200E24C13 /* OpenGLES.framework in Frameworks */,
 				5D7BE3741CF3789E00302C37 /* UIKit.framework in Frameworks */,
 				5D7BE3721CF3789800302C37 /* Foundation.framework in Frameworks */,
 				5D7BE3701CF3761800302C37 /* CoreMedia.framework in Frameworks */,
@@ -133,6 +157,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D037DCD1CF4B1D400E24C13 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				5D037DCE1CF4B1DC00E24C13 /* Options */,
+			);
+			name = UserInterface;
+			sourceTree = "<group>";
+		};
+		5D037DCE1CF4B1DC00E24C13 /* Options */ = {
+			isa = PBXGroup;
+			children = (
+				5D037DCF1CF4B20500E24C13 /* OptionBase.h */,
+				5D037DD01CF4B20500E24C13 /* OptionBase.m */,
+				5D037DD21CF4B2A300E24C13 /* OptionCalibration.h */,
+				5D037DD31CF4B2A300E24C13 /* OptionCalibration.m */,
+				5D037DD51CF4B2C900E24C13 /* OptionMarker.h */,
+				5D037DD61CF4B2C900E24C13 /* OptionMarker.m */,
+			);
+			name = Options;
+			sourceTree = "<group>";
+		};
+		5D037DD81CF4CF9700E24C13 /* Rendering */ = {
+			isa = PBXGroup;
+			children = (
+				5D037DD91CF4CFBF00E24C13 /* RenderManager.h */,
+				5D037DDA1CF4CFBF00E24C13 /* RenderManager.mm */,
+			);
+			name = Rendering;
+			sourceTree = "<group>";
+		};
 		5D7BE31C1CF3681C00302C37 = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +211,8 @@
 		5D7BE3271CF3681C00302C37 /* RenderOpenCV */ = {
 			isa = PBXGroup;
 			children = (
+				5D037DD81CF4CF9700E24C13 /* Rendering */,
+				5D037DCD1CF4B1D400E24C13 /* UserInterface */,
 				5D7CAF751CF37FE900EF9B29 /* OpenCV */,
 				5D7BE3611CF3693500302C37 /* Camera */,
 				5D7BE32B1CF3681C00302C37 /* AppDelegate.h */,
@@ -211,6 +267,9 @@
 		5D7CAF741CF37FD800EF9B29 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5D037DE31CF4DBDB00E24C13 /* QuartzCore.framework */,
+				5D037DE11CF4DBC400E24C13 /* GLKit.framework */,
+				5D037DDF1CF4DB4200E24C13 /* OpenGLES.framework */,
 				5D7BE3731CF3789E00302C37 /* UIKit.framework */,
 				5D7BE3711CF3789800302C37 /* Foundation.framework */,
 				5D7BE36F1CF3761800302C37 /* CoreMedia.framework */,
@@ -238,10 +297,14 @@
 		5D7CAF761CF37FFB00EF9B29 /* CameraCalibration */ = {
 			isa = PBXGroup;
 			children = (
+				5D037DE51CF4DC4000E24C13 /* CameraCalibration.cpp */,
+				5D037DE61CF4DC4000E24C13 /* CameraCalibration.hpp */,
 				5D7CAF771CF3802600EF9B29 /* CalibrationWrapper.h */,
 				5D7CAF781CF3802600EF9B29 /* CalibrationWrapper.mm */,
-				5D7CAF791CF3802600EF9B29 /* CameraCalibrator.hpp */,
-				5D7CAF7A1CF3802600EF9B29 /* CameraCalibrator.cpp */,
+				5D037DCA1CF47DB700E24C13 /* CameraCalibrator.hpp */,
+				5D037DCB1CF47DC200E24C13 /* CameraCalibrator.cpp */,
+				5D7CAF901CF3843D00EF9B29 /* Calibrator.cpp */,
+				5D7CAF911CF3843D00EF9B29 /* Calibrator.hpp */,
 			);
 			name = CameraCalibration;
 			sourceTree = "<group>";
@@ -257,8 +320,6 @@
 				5D7CAF891CF3820900EF9B29 /* Perimetr.hpp */,
 				5D7CAF811CF3820300EF9B29 /* GeometryTypes.cpp */,
 				5D7CAF821CF3820300EF9B29 /* GeometryTypes.hpp */,
-				5D7CAF8D1CF3824300EF9B29 /* CameraCalibration.cpp */,
-				5D7CAF8E1CF3824300EF9B29 /* CameraCalibration.hpp */,
 			);
 			name = "AR Marker";
 			sourceTree = "<group>";
@@ -399,15 +460,20 @@
 				5D7BE3301CF3681C00302C37 /* ViewController.mm in Sources */,
 				5D7BE32D1CF3681C00302C37 /* AppDelegate.mm in Sources */,
 				5D7CAF7B1CF3802600EF9B29 /* CalibrationWrapper.mm in Sources */,
-				5D7CAF8F1CF3824300EF9B29 /* CameraCalibration.cpp in Sources */,
+				5D037DD71CF4B2C900E24C13 /* OptionMarker.m in Sources */,
 				5D7CAF831CF3820300EF9B29 /* GeometryTypes.cpp in Sources */,
 				5D7CAF8A1CF3820900EF9B29 /* MarkerDetector.cpp in Sources */,
+				5D037DE71CF4DC4000E24C13 /* CameraCalibration.cpp in Sources */,
 				5D7BE3641CF3695A00302C37 /* VideoSource.mm in Sources */,
+				5D037DD11CF4B20500E24C13 /* OptionBase.m in Sources */,
+				5D7CAF921CF3843D00EF9B29 /* Calibrator.cpp in Sources */,
+				5D037DDB1CF4CFBF00E24C13 /* RenderManager.mm in Sources */,
 				5D7CAF7F1CF3805900EF9B29 /* UIImage+OpenCV.mm in Sources */,
 				5D7BE32A1CF3681C00302C37 /* main.m in Sources */,
 				5D7CAF8C1CF3820900EF9B29 /* Perimetr.cpp in Sources */,
-				5D7CAF7C1CF3802600EF9B29 /* CameraCalibrator.cpp in Sources */,
 				5D7CAF8B1CF3820900EF9B29 /* Marker.cpp in Sources */,
+				5D037DCC1CF47DC200E24C13 /* CameraCalibrator.cpp in Sources */,
+				5D037DD41CF4B2A300E24C13 /* OptionCalibration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

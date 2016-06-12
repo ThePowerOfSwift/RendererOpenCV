@@ -6,7 +6,7 @@
 //  Copyright © 2016 Anastasia Tarasova. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+
 
 @interface ViewController : UIViewController
 

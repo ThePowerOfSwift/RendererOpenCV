@@ -15,9 +15,7 @@
 #include "Marker.hpp"
 #include "Perimetr.hpp"
 
-MarkerDetector::MarkerDetector(CameraCalibration calibration)
-: m_minContourLengthAllowed(100)
-, markerSize(100,100)
+MarkerDetector::MarkerDetector(CameraCalibration calibration): m_minContourLengthAllowed(100), markerSize(100,100)
 {
     cv::Mat(3,3, CV_32F, const_cast<float*>(&calibration.getIntrinsic().data[0])).copyTo(camMatrix);
     cv::Mat(4,1, CV_32F, const_cast<float*>(&calibration.getDistorsion().data[0])).copyTo(distCoeff);

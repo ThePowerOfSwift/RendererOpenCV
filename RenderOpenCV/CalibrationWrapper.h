@@ -11,14 +11,16 @@
 #import <AVFoundation/AVFoundation.h>
 
 
-@interface CalibrationWrapper : NSObject
+@interface CalibrationWrapper : NSObject{
+
+    
+}
 
 
 
 -(void) calibrateWithImageArray:(NSArray*)images;
 
 -(void) drawCheccBoardCornersOnFrame:(cv::Mat&)cvMat;
-
 
 
 @end

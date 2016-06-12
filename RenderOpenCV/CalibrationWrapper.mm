@@ -15,7 +15,10 @@
 
 
 
-@interface CalibrationWrapper()
+@interface CalibrationWrapper(){
+
+    
+}
 
 @property (nonatomic) CameraCalibrator * calibrator;
 
@@ -28,7 +31,16 @@
 
 -(id)init {
     if ( self = [super init] ) {
-        _calibrator = new CameraCalibrator();
+        
+        /*creating yml file to store calibration parameters*/
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *directory = [paths objectAtIndex:0];
+        NSString *filePath = [directory stringByAppendingPathComponent:[NSString stringWithUTF8String:"camera_parameter.yml"]];
+        //create calibrator
+        self.calibrator = new CameraCalibrator();//([filePath UTF8String]);
+        //TODO:Where to place this?
+        //calibrator->startCapturing();
+
     }
     return self;
 }
@@ -48,13 +60,13 @@
     //for example, if you has a chessboard with 8*8 grid, put 7 for height and width here.
     boardSize.height = 7;
     boardSize.width = 7;
-    self.calibrator->addChessboardPoints(imageVector, boardSize);
+   // self.calibrator->addChessboardPoints(imageVector, boardSize);
     cv::Size imageSize = imageVector[0].size();
-    double error = self.calibrator->calibrate(imageSize);
-    std::cout << "Done calibration, error: " << error << std::endl;
+    //double error = self.calibrator->calibrate(imageSize);
+   // std::cout << "Done calibration, error: " << error << std::endl;
     
     cv::Mat cameraMatrix, distMatrix;
-    self.calibrator->getCameraMatrixAndDistCoeffMatrix(cameraMatrix, distMatrix);
+    //self.calibrator->getCameraMatrixAndDistCoeffMatrix(cameraMatrix, distMatrix);
     cout << "Camera Matrix: \n" << cameraMatrix << endl << endl;
     cout << "Dist Matrix: \n" << distMatrix << endl << endl;
 }
@@ -65,7 +77,7 @@
     cv::Size boardSize;
     boardSize.height = 7;
     boardSize.width = 7;
-    
+    //calibrator->processFrame(cvMat);
     cvMat = _calibrator->drawBoardCorners(cvMat, boardSize);
     
 }

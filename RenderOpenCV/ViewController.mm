@@ -9,12 +9,20 @@
 #import "ViewController.h"
 #import "VideoSource.h"
 #import "CalibrationWrapper.h"
+#import "MarkerDetector.hpp"
+#include "CameraCalibration.hpp"
+#import "RenderManager.h"
 
 @interface ViewController ()<CvVideoCameraDelegate>{
 
     BOOL addedObservers;
     CalibrationWrapper * cameraCalibrator;
     VideoSource * videoManager;
+    MarkerDetector * markerDetector;
+    CameraCalibration cameraParams;
+    RenderManager * renderer;
+    int mode;
+    
 }
 
 @property (nonatomic,strong) VideoSource * videoManager;
@@ -35,14 +43,20 @@
                                                object:[UIApplication sharedApplication]];
     
     addedObservers = YES;
-    
-    // Keep track of changes to the device orientation so we can update the capture pipeline
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 
-    
     videoManager = [[VideoSource alloc] initWithParentView:self.view];
     videoManager.videoCamera.delegate = self;
     [videoManager startRunning];
+    
+    
+    
+    cameraParams = CameraCalibration(6.24860291e+02 * (640./352.), 6.24860291e+02 * (480./288.), 640 * 0.5f, 480 * 0.5f);
+    
+    markerDetector = new MarkerDetector(cameraParams);
+    renderer = [[RenderManager alloc]initWithCalibration:cameraParams];
+    //markerDetector = new MarkerDetector(cameraParams);
+    mode = 4;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,18 +67,45 @@
 - (void)adjustOrientation {
     UIInterfaceOrientation currentInterfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
     
-    [videoManager layoutPreviewLayer];
-    [videoManager updateOrientation];
-    //[videoManager layoutPreviewLayer];
-    
 }
 
 
 -(void)processImage:(cv::Mat &)image{
 
-    //[cameraCalibrator drawCheccBoardCornersOnFrame:image];
-    cv::cvtColor(image, image, CV_BGRA2GRAY);
+    //[renderer CVMat2GLTexture:image];
+    //
+    dispatch_sync(dispatch_get_main_queue(), ^{
     
+        markerDetector->processFrame(image);
+        
+        
+        [renderer drawFrame:image withTransformations:markerDetector->getTransformations()];
+    }) ;
+    //markerDetector->processFrame(image);
+    
+       
+    //[renderer drawFrame:image withTransformations:markerDetector->getTransformations()];
+    /*switch (mode) {
+        case 0:
+            self.markerDetector->Step_grayscale(image);
+            break;
+        case 1:
+            self.markerDetector->Step_threshold(image);
+            break;
+        case 2:
+            self.markerDetector->Step_contours(image);
+            break;
+        case 3:
+            self.markerDetector->Step_candidates(image);
+            break;
+        case 4:
+            self.markerDetector->processFrame(image);
+            break;
+        default:
+            break;
+    }*/
+    
+   
 }
 @end
 

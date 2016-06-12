@@ -85,6 +85,7 @@ cv::Mat CameraCalibrator::drawBoardCorners(cv::Mat &image, cv::Size &boardSize){
     vector<cv::Point2f> imageCorners;
     vector<cv::Point3f> objectCorners;
     
+    bSize  = boardSize;
     // 2D Image points:
     cv::Mat grayImage; // grayscale image
     // for all viewpoints
@@ -129,7 +130,8 @@ bool CameraCalibrator::findBoardPoints(cv::Mat &image,
         // Get the chessboard corners
     cout << "finding chessboard corners" << endl;
     cout<<image.channels();
-    bool res = cv::findChessboardCorners( image, boardSize, imageCorners);
+    int cornerFlag = CV_CALIB_CB_ADAPTIVE_THRESH | CV_CALIB_CB_NORMALIZE_IMAGE | CV_CALIB_CB_FILTER_QUADS;
+    bool res = findChessboardCorners( image, boardSize, imageCorners,cornerFlag);
     //bool res = cv::findChessboardCorners(cv::Mat(image), boardSize, imageCorners, CV_CALIB_CB_ADAPTIVE_THRESH);
    /* bool res = cv::findChessboardCorners(image, boardSize, imageCorners, cv::CALIB_CB_NORMALIZE_IMAGE | cv::CALIB_CB_ADAPTIVE_THRESH | cv::CALIB_CB_FAST_CHECK);*/
     if (res == true)
