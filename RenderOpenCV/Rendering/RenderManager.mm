@@ -7,10 +7,11 @@
 //
 
 #import "RenderManager.h"
-#import <OpenGLES/ES1/gl.h>
+//#import <OpenGLES/ES1/gl.h>
 #import <OpenGLES/ES2/gl.h>
-#import <OpenGLES/ES3/gl.h>
-#import <OpenGLES/ES3/glext.h>
+#import <OpenGLES/ES2/glext.h>
+//#import <OpenGLES/ES1/glext.h>
+#import <OpenGLES/EAGL.h>
 #import <iostream>
 
 //http://www.opengl-tutorial.org/ru/intermediate-tutorials/tutorial-14-render-to-texture/
@@ -44,26 +45,18 @@
         width = 640;
         height = 480;
         
-        
         glEnable(GL_TEXTURE_2D);
-        
-        //glGenTextures(1, &renderedTexture);
+        glGenTextures(1, &renderedTexture);
         // "Bind" the newly created texture : all future texture functions will modify this texture
-        //glBindTexture(GL_TEXTURE_2D, renderedTexture);
+        glBindTexture(GL_TEXTURE_2D, renderedTexture);
         
-        
-        
-        //filtering is needed
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         
-        //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        // This is necessary for non-power-of-two textures
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         
-        //glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE); // automatic mipmap
+  
         
         glEnable(GL_DEPTH_TEST);
         m_calibration = calibration;
@@ -165,7 +158,7 @@
 
 - (void)initContext
 {
-    EAGLContext *aContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
+    EAGLContext *aContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     
     if (!aContext)
         NSLog(@"Failed to create ES context");
@@ -211,7 +204,7 @@
 
 
 
-- (void) drawBackground
+/*- (void) drawBackground
 {
     GLfloat w = width;
     GLfloat h = height;
@@ -283,9 +276,9 @@
     glDisable(GL_TEXTURE_2D);
     
     glErCode = glGetError();
-}
+}*/
 
--(void)drawAR:(cv::Mat&)frame {
+/*-(void)drawAR:(cv::Mat&)frame {
 
     
     //from marker detector
@@ -368,7 +361,7 @@
     glPopMatrix();
     glDisableClientState(GL_VERTEX_ARRAY);
     
-}
+}*/
 
 - (void)drawFrame:(cv::Mat&)frame withTransformations:(const std::vector<Transformation>&)transformations
 {
@@ -388,7 +381,7 @@
     glErCode = glGetError();
    
     //result to cvMat
-    [self GLTexture2CVMat:frame];
+    //[self GLTexture2CVMat:frame];
 }
 
 //here we convert cvMat to OpenGL Texture
@@ -402,13 +395,19 @@
     
     [self setFramebuffer];
     
+    //glEnable(GL_TEXTURE_2D);
+    
+   
     glGenTextures(1, &renderedTexture);
     // "Bind" the newly created texture : all future texture functions will modify this texture
     glBindTexture(GL_TEXTURE_2D, renderedTexture);
+    int glErCode = glGetError();
+    //glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     
-    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    glErCode = glGetError();
+    glPixelStorei(GL_PACK_ALIGNMENT, 1);
     
-    cv::cvtColor(image, image, CV_BGRA2RGBA);
+    //cv::cvtColor(image, image, CV_BGRA2RGBA);
     
     glTexImage2D(GL_TEXTURE_2D,
                  0,
@@ -416,16 +415,24 @@
                  width,
                  height,
                  0,
-                 GL_RGBA,
+                 GL_BGRA,
                  GL_UNSIGNED_BYTE,
                  image.data);
     
-    int glErCode = glGetError();
+    
+    glErCode = glGetError();
+    
+    if (glErCode != GL_NO_ERROR)
+    {
+        std::cout << glErCode << std::endl;
+    }
+    
+    //glActiveTexture(renderedTexture);
     
     //glGenerateMipmap(GL_TEXTURE_2D);
     
     // Set "renderedTexture" as our colour attachement #0
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, renderedTexture, 0);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,renderedTexture, 0);
     
     glErCode = glGetError();
     if (glErCode != GL_NO_ERROR)
@@ -433,7 +440,58 @@
         std::cout << glErCode << std::endl;
     }
     
-    glBindTexture(GL_TEXTURE_2D, 0);
+    //glBindTexture(GL_TEXTURE_2D, 0);
+    
+    int status = glCheckFramebufferStatus(GL_FRAMEBUFFER) ;
+    if(status != GL_FRAMEBUFFER_COMPLETE) {
+        NSLog(@"failed to make complete framebuffer object %x", status);
+    }
+    
+    
+    
+    
+    
+    
+    GLuint bufferLength = width * height *8;
+    GLubyte* buffer =(GLubyte*)malloc(bufferLength);
+    
+    
+    
+    glPixelStorei ( GL_UNPACK_ALIGNMENT , 1 ) ;
+    
+    //glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    
+    status = glCheckFramebufferStatus(GL_FRAMEBUFFER) ;
+    if(status != GL_FRAMEBUFFER_COMPLETE) {
+        NSLog(@"failed to make complete framebuffer object %x", status);
+    }
+    
+    
+    glReadPixels(0, 0, width, height, GL_BGRA, GL_UNSIGNED_BYTE, buffer);
+    
+    
+    glErCode = glGetError();
+    
+    cv::Mat tmp(height, width, CV_8UC4, buffer);
+    
+    bool zeros = tmp.empty();
+         zeros = image.empty();
+    cv::flip(image, image, -1);
+    
+    //cv::cvtColor(image, image, CV_RGBA2BGRA);
+    
+    image = tmp.clone();
+    
+    glDeleteTextures(1, &renderedTexture );
+    
+    glErCode = glGetError();
+    if (glErCode != GL_NO_ERROR)
+    {
+        std::cout << glErCode << std::endl;
+    }
+    
+    free(buffer);
+
 }
 
 /*I think no need to create a new cvMat since we have current frame*/
@@ -450,15 +508,15 @@
     
     int glErCode;
     
-    // use fast 4-byte alignment (default anyway) if possible
-    //glPixelStorei(GL_PACK_ALIGNMENT, 1);
-    
-   
-    
-   //glPixelStorei ( GL_UNPACK_ALIGNMENT , 1 ) ;
+
+    glPixelStorei ( GL_UNPACK_ALIGNMENT , 1 ) ;
     
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     
+    int status = glCheckFramebufferStatus(GL_FRAMEBUFFER) ;
+    if(status != GL_FRAMEBUFFER_COMPLETE) {
+        NSLog(@"failed to make complete framebuffer object %x", status);
+    }
     
     
     glReadPixels(0, 0, width, height, GL_BGRA, GL_UNSIGNED_BYTE, buffer);
@@ -471,11 +529,11 @@
     bool zeros = image.empty();
     cv::flip(image, image, 0);
 
-    cv::cvtColor(image, image, CV_RGBA2BGRA);
+    //cv::cvtColor(image, image, CV_RGBA2BGRA);
     
-    //frame = image.clone();
+    frame = image.clone();
     
-    glDeleteTextures(1, &renderedTexture );
+    //glDeleteTextures(1, &renderedTexture );
     
     glErCode = glGetError();
     if (glErCode != GL_NO_ERROR)
