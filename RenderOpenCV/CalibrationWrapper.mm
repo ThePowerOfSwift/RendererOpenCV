@@ -8,8 +8,9 @@
 
 
 #import "CalibrationWrapper.h"
-#import "CameraCalibrator.hpp"
+#import "CamCalib.hpp"
 #import "UIImage+OpenCV.h"
+#import "Calibrator.hpp"
 
 //#import <opencv2/imgcodecs/ios.h>
 
@@ -20,7 +21,8 @@
     
 }
 
-@property (nonatomic) CameraCalibrator * calibrator;
+@property (nonatomic) CamCalib * calibrator;
+@property (nonatomic) Calibrator * calib;
 
 @end
 
@@ -37,7 +39,9 @@
         NSString *directory = [paths objectAtIndex:0];
         NSString *filePath = [directory stringByAppendingPathComponent:[NSString stringWithUTF8String:"camera_parameter.yml"]];
         //create calibrator
-        self.calibrator = new CameraCalibrator();//([filePath UTF8String]);
+        self.calibrator = new CamCalib();//([filePath UTF8String]);
+        
+        //self.calib = new Calibrator();
         //TODO:Where to place this?
         //calibrator->startCapturing();
 
@@ -78,7 +82,9 @@
     boardSize.height = 7;
     boardSize.width = 7;
     //calibrator->processFrame(cvMat);
-    cvMat = _calibrator->drawBoardCorners(cvMat, boardSize);
+     _calibrator->drawBoardCorners(cvMat, boardSize);
+    
+    //self.calib->processFrame(cvMat);
     
 }
 @end

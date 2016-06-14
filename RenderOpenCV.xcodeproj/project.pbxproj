@@ -16,6 +16,7 @@
 		5D037DE21CF4DBC400E24C13 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D037DE11CF4DBC400E24C13 /* GLKit.framework */; };
 		5D037DE41CF4DBDB00E24C13 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D037DE31CF4DBDB00E24C13 /* QuartzCore.framework */; };
 		5D037DE71CF4DC4000E24C13 /* CameraCalibration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D037DE51CF4DC4000E24C13 /* CameraCalibration.cpp */; };
+		5D7B121C1D101C340075740C /* CamCalib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D7B121A1D101C340075740C /* CamCalib.cpp */; };
 		5D7BE32A1CF3681C00302C37 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BE3291CF3681C00302C37 /* main.m */; };
 		5D7BE32D1CF3681C00302C37 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BE32C1CF3681C00302C37 /* AppDelegate.mm */; };
 		5D7BE3301CF3681C00302C37 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BE32F1CF3681C00302C37 /* ViewController.mm */; };
@@ -24,7 +25,6 @@
 		5D7BE3381CF3681C00302C37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D7BE3361CF3681C00302C37 /* LaunchScreen.storyboard */; };
 		5D7BE3431CF3681C00302C37 /* RenderOpenCVTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BE3421CF3681C00302C37 /* RenderOpenCVTests.m */; };
 		5D7BE34E1CF3681C00302C37 /* RenderOpenCVUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BE34D1CF3681C00302C37 /* RenderOpenCVUITests.m */; };
-		5D7BE35C1CF3682B00302C37 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D7BE35B1CF3682B00302C37 /* opencv2.framework */; };
 		5D7BE3641CF3695A00302C37 /* VideoSource.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BE3631CF3695A00302C37 /* VideoSource.mm */; };
 		5D7BE3661CF375F100302C37 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D7BE3651CF375F100302C37 /* Accelerate.framework */; };
 		5D7BE3681CF375F500302C37 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D7BE3671CF375F500302C37 /* AssetsLibrary.framework */; };
@@ -41,6 +41,7 @@
 		5D7CAF8B1CF3820900EF9B29 /* Marker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D7CAF861CF3820900EF9B29 /* Marker.cpp */; };
 		5D7CAF8C1CF3820900EF9B29 /* Perimetr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D7CAF881CF3820900EF9B29 /* Perimetr.cpp */; };
 		5D7CAF921CF3843D00EF9B29 /* Calibrator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D7CAF901CF3843D00EF9B29 /* Calibrator.cpp */; };
+		5DA1D7241D10566B007CAD3D /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DA1D7231D10566B007CAD3D /* opencv2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,8 @@
 		5D037DE31CF4DBDB00E24C13 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5D037DE51CF4DC4000E24C13 /* CameraCalibration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraCalibration.cpp; sourceTree = "<group>"; };
 		5D037DE61CF4DC4000E24C13 /* CameraCalibration.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CameraCalibration.hpp; sourceTree = "<group>"; };
+		5D7B121A1D101C340075740C /* CamCalib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CamCalib.cpp; path = Calibrator/CamCalib.cpp; sourceTree = "<group>"; };
+		5D7B121B1D101C340075740C /* CamCalib.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CamCalib.hpp; path = Calibrator/CamCalib.hpp; sourceTree = "<group>"; };
 		5D7BE3251CF3681C00302C37 /* RenderOpenCV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RenderOpenCV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D7BE3291CF3681C00302C37 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5D7BE32B1CF3681C00302C37 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -92,7 +95,6 @@
 		5D7BE3491CF3681C00302C37 /* RenderOpenCVUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RenderOpenCVUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D7BE34D1CF3681C00302C37 /* RenderOpenCVUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RenderOpenCVUITests.m; sourceTree = "<group>"; };
 		5D7BE34F1CF3681C00302C37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5D7BE35B1CF3682B00302C37 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		5D7BE35D1CF3684500302C37 /* RenderOpenCV-PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RenderOpenCV-PrefixHeader.pch"; sourceTree = "<group>"; };
 		5D7BE3621CF3695A00302C37 /* VideoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VideoSource.h; path = Camera/VideoSource.h; sourceTree = "<group>"; };
 		5D7BE3631CF3695A00302C37 /* VideoSource.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = VideoSource.mm; path = Camera/VideoSource.mm; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		5D7CAF891CF3820900EF9B29 /* Perimetr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Perimetr.hpp; sourceTree = "<group>"; };
 		5D7CAF901CF3843D00EF9B29 /* Calibrator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Calibrator.cpp; path = Calibrator/Calibrator.cpp; sourceTree = "<group>"; };
 		5D7CAF911CF3843D00EF9B29 /* Calibrator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Calibrator.hpp; path = Calibrator/Calibrator.hpp; sourceTree = "<group>"; };
+		5DA1D7231D10566B007CAD3D /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,12 +134,12 @@
 				5D7BE3741CF3789E00302C37 /* UIKit.framework in Frameworks */,
 				5D7BE3721CF3789800302C37 /* Foundation.framework in Frameworks */,
 				5D7BE3701CF3761800302C37 /* CoreMedia.framework in Frameworks */,
+				5DA1D7241D10566B007CAD3D /* opencv2.framework in Frameworks */,
 				5D7BE36E1CF3760C00302C37 /* CoreVideo.framework in Frameworks */,
 				5D7BE36C1CF3760200302C37 /* CoreGraphics.framework in Frameworks */,
 				5D7BE36A1CF375FA00302C37 /* AVFoundation.framework in Frameworks */,
 				5D7BE3681CF375F500302C37 /* AssetsLibrary.framework in Frameworks */,
 				5D7BE3661CF375F100302C37 /* Accelerate.framework in Frameworks */,
-				5D7BE35C1CF3682B00302C37 /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +270,7 @@
 		5D7CAF741CF37FD800EF9B29 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5DA1D7231D10566B007CAD3D /* opencv2.framework */,
 				5D037DE31CF4DBDB00E24C13 /* QuartzCore.framework */,
 				5D037DE11CF4DBC400E24C13 /* GLKit.framework */,
 				5D037DDF1CF4DB4200E24C13 /* OpenGLES.framework */,
@@ -278,7 +282,6 @@
 				5D7BE3691CF375FA00302C37 /* AVFoundation.framework */,
 				5D7BE3671CF375F500302C37 /* AssetsLibrary.framework */,
 				5D7BE3651CF375F100302C37 /* Accelerate.framework */,
-				5D7BE35B1CF3682B00302C37 /* opencv2.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -298,6 +301,8 @@
 			isa = PBXGroup;
 			children = (
 				5D037DE51CF4DC4000E24C13 /* CameraCalibration.cpp */,
+				5D7B121A1D101C340075740C /* CamCalib.cpp */,
+				5D7B121B1D101C340075740C /* CamCalib.hpp */,
 				5D037DE61CF4DC4000E24C13 /* CameraCalibration.hpp */,
 				5D7CAF771CF3802600EF9B29 /* CalibrationWrapper.h */,
 				5D7CAF781CF3802600EF9B29 /* CalibrationWrapper.mm */,
@@ -460,6 +465,7 @@
 				5D7BE3301CF3681C00302C37 /* ViewController.mm in Sources */,
 				5D7BE32D1CF3681C00302C37 /* AppDelegate.mm in Sources */,
 				5D7CAF7B1CF3802600EF9B29 /* CalibrationWrapper.mm in Sources */,
+				5D7B121C1D101C340075740C /* CamCalib.cpp in Sources */,
 				5D037DD71CF4B2C900E24C13 /* OptionMarker.m in Sources */,
 				5D7CAF831CF3820300EF9B29 /* GeometryTypes.cpp in Sources */,
 				5D7CAF8A1CF3820900EF9B29 /* MarkerDetector.cpp in Sources */,

@@ -7,12 +7,8 @@
 //
 
 #include "Marker.hpp"
-//#include "DebugHelpers.hpp"
 
-Marker::Marker()
-: id(-1)
-{
-}
+Marker::Marker(): id(-1){}
 
 bool operator<(const Marker &M1,const Marker&M2)
 {
@@ -62,7 +58,6 @@ int Marker::hammDistMarker(cv::Mat bits)
                 minSum=sum;
         }
         
-        //do the and
         dist += minSum;
     }
     
@@ -121,7 +116,7 @@ int Marker::getMarkerId(cv::Mat &markerImage,int &nRotations)
     
     cv::Mat bitMatrix = cv::Mat::zeros(5,5,CV_8UC1);
     
-    //получаем информацию(for each inner square, determine if it is  black or white)
+    //for each inner square, determine if it is  black or white
     for (int y=0;y<5;y++)
     {
         for (int x=0;x<5;x++)

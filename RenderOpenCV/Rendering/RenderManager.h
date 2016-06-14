@@ -12,19 +12,14 @@
 #import "CameraCalibration.hpp"
 
 @interface RenderManager : NSObject{
-
     
     std::vector<Transformation> m_transformations;
     CameraCalibration m_calibration;
-    //CGSize m_frameSize;
     GLuint width;
     GLuint height;
 }
 
--(void) CVMat2GLTexture:(cv::Mat&)image;
 -(instancetype)initWithCalibration:(CameraCalibration)calibration;
 - (void)drawFrame:(cv::Mat&)frame withTransformations:(const std::vector<Transformation>&)transformations;
-
-
 
 @end

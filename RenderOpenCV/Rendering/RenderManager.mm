@@ -14,21 +14,19 @@
 #import <OpenGLES/EAGL.h>
 #import <iostream>
 
-//http://www.opengl-tutorial.org/ru/intermediate-tutorials/tutorial-14-render-to-texture/
+
 
 @interface RenderManager(){
     
-    // The OpenGL ES names for the framebuffer and renderbuffer used to render to this view.
-    //Multisampling
+    // The OpenGL ES names for the framebuffer and renderbuffer used for rendering.
     GLuint  frameBuffer;
     GLuint  colorRenderbuffer,
             depthRenderbuffer;
-    EAGLContext *context;
     
+    EAGLContext *context;
+
     // The texture we're going to render to
     GLuint renderedTexture;
-
-
 }
 
 @end
@@ -80,21 +78,15 @@
         glGenFramebuffers(1, &frameBuffer);
         glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
         
-        GLenum status = glGetError();
-        
         //2.Create a depth or depth/stencil renderbuffer, allocate storage for it, and attach it to the framebuffer’s depth attachment point.
        
         glGenRenderbuffers(1, &depthRenderbuffer);
         glBindRenderbuffer(GL_RENDERBUFFER, depthRenderbuffer);
         glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, width, height);
-        // attaching renderBuffer to FBO
-        // attach depth buffer to FBO at depth_attachment
         glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRenderbuffer);
         
-        
-        status = glGetError();
         //3.Test the framebuffer for completeness. This test only needs to be performed when the framebuffer’s configuration changes.
-        status = glCheckFramebufferStatus(GL_FRAMEBUFFER) ;
+        GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER) ;
         if(status != GL_FRAMEBUFFER_COMPLETE) {
             NSLog(@"failed to make complete framebuffer object %x", status);
         }
@@ -136,9 +128,11 @@
             [self createFrameBuffers];
         
         glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
+        
+        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glViewport(0, 0, width, height);
         
-        glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+        glClear(GL_DEPTH_BUFFER_BIT| GL_COLOR_BUFFER_BIT);
         
         
     }
@@ -237,20 +231,21 @@
     
     glMatrixMode(GL_PROJECTION);
     
+    
     glErCode = glGetError();
     
     glLoadMatrixf(proj);
     
     glErCode = glGetError();
     
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
+    //glMatrixMode(GL_MODELVIEW);
+    //glLoadIdentity();
     
     
     glErCode = glGetError();
     
     glDepthMask(FALSE);
-    glDisable(GL_COLOR_MATERIAL);
+    //glDisable(GL_COLOR_MATERIAL);
     
     glErCode = glGetError();
     
@@ -263,22 +258,22 @@
     glErCode = glGetError();
     
     // Update attribute values.
-    glVertexPointer(2, GL_FLOAT, 0, squareVertices);
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glTexCoordPointer(2, GL_FLOAT, 0, textureVertices);
-    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+   // glVertexPointer(2, GL_FLOAT, 0, squareVertices);
+    //glEnableClientState(GL_VERTEX_ARRAY);
+    //glTexCoordPointer(2, GL_FLOAT, 0, textureVertices);
+    //glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     
-    glColor4f(1,1,1,1);
+    //glColor4f(1,1,1,1);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     
-    glDisableClientState(GL_VERTEX_ARRAY);
-    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    //glDisableClientState(GL_VERTEX_ARRAY);
+   // glDisableClientState(GL_TEXTURE_COORD_ARRAY);
     glDisable(GL_TEXTURE_2D);
     
     glErCode = glGetError();
-}*/
+}
 
-/*-(void)drawAR:(cv::Mat&)frame {
+-(void)drawAR:(cv::Mat&)frame {
 
     
     //from marker detector
@@ -289,7 +284,7 @@
     [self buildProjectionMatrix:m_calibration.getIntrinsic() width:width height:height projection:projectionMatrix];
     
     
-    glMatrixMode(GL_PROJECTION);//говорит о том, что команды относятся к проекту.
+   // glMatrixMode(GL_PROJECTION);//говорит о том, что команды относятся к проекту.
     glLoadMatrixf(projectionMatrix.data);
     
     glMatrixMode(GL_MODELVIEW);//говорит о том, что работы будет теперь просмотром, а не проектом. Это важно. Дело в том , что проект и просмотр имеют разницу. Зачастую необходимо поворачивать фигуры друг относительно друга и т.п. это делается в разных матрицах и т.д.
@@ -374,11 +369,11 @@
     // Draw a video on the background
     //[self drawBackground];
     
-    glErCode = glGetError();
+    
     // Draw 3D objects on the position of the detected markers
     //[self drawAR:frame];
     
-    glErCode = glGetError();
+
    
     //result to cvMat
     //[self GLTexture2CVMat:frame];
@@ -388,24 +383,27 @@
 -(void) CVMat2GLTexture:(cv::Mat&)image
 {
     
-    width = image.cols;
+    /*width = image.cols;
     height = image.rows;
     
     cv::flip(image, image, 0);
     
     [self setFramebuffer];
     
-    //glEnable(GL_TEXTURE_2D);
+    glEnable(GL_TEXTURE_2D);
     
    
     glGenTextures(1, &renderedTexture);
     // "Bind" the newly created texture : all future texture functions will modify this texture
     glBindTexture(GL_TEXTURE_2D, renderedTexture);
+    
+
+    
     int glErCode = glGetError();
     //glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     
     glErCode = glGetError();
-    glPixelStorei(GL_PACK_ALIGNMENT, 1);
+    glPixelStorei(GL_PACK_ALIGNMENT, 4);
     
     //cv::cvtColor(image, image, CV_BGRA2RGBA);
     
@@ -420,6 +418,7 @@
                  image.data);
     
     
+    
     glErCode = glGetError();
     
     if (glErCode != GL_NO_ERROR)
@@ -427,20 +426,83 @@
         std::cout << glErCode << std::endl;
     }
     
-    //glActiveTexture(renderedTexture);
-    
-    //glGenerateMipmap(GL_TEXTURE_2D);
     
     // Set "renderedTexture" as our colour attachement #0
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,renderedTexture, 0);
     
+    
+    glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
+    glViewport(0, 0, width, height);
+    
+    glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+    
     glErCode = glGetError();
     if (glErCode != GL_NO_ERROR)
     {
         std::cout << glErCode << std::endl;
     }
     
-    //glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    
+    int status = glCheckFramebufferStatus(GL_FRAMEBUFFER) ;
+    if(status != GL_FRAMEBUFFER_COMPLETE) {
+        NSLog(@"failed to make complete framebuffer object %x", status);
+    }
+    
+    */
+    
+    width = image.cols;
+    height = image.rows;
+    
+    //cv::flip(image, image, 0);
+    
+    [self setFramebuffer];
+    
+    glEnable(GL_TEXTURE_2D);
+    
+    
+    glGenTextures(1, &renderedTexture);
+    // "Bind" the newly created texture : all future texture functions will modify this texture
+    glBindTexture(GL_TEXTURE_2D, renderedTexture);
+    int glErCode = glGetError();
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    
+    glPixelStorei(GL_PACK_ALIGNMENT, 1);
+    
+    glTexImage2D(GL_TEXTURE_2D,
+                 0,
+                 GL_RGBA,
+                 width,
+                 height,
+                 0,
+                 GL_BGRA,
+                 GL_UNSIGNED_BYTE,
+                 image.ptr());
+    
+    
+    glErCode = glGetError();
+    
+    if (glErCode != GL_NO_ERROR)
+    {
+        std::cout << glErCode << std::endl;
+    }
+
+    // Set "renderedTexture" as our colour attachement #0
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,renderedTexture, 0);
+    
+    
+    
+    glErCode = glGetError();
+    if (glErCode != GL_NO_ERROR)
+    {
+        std::cout << glErCode << std::endl;
+    }
+    
     
     int status = glCheckFramebufferStatus(GL_FRAMEBUFFER) ;
     if(status != GL_FRAMEBUFFER_COMPLETE) {
@@ -448,68 +510,48 @@
     }
     
     
-    
-    
-    
-    
-    GLuint bufferLength = width * height *8;
+    GLuint bufferLength = width * height *4 *sizeof(GLubyte);
     GLubyte* buffer =(GLubyte*)malloc(bufferLength);
-    
-    
     
     glPixelStorei ( GL_UNPACK_ALIGNMENT , 1 ) ;
     
-    //glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glBindFramebuffer(GL_FRAMEBUFFER, 1);
     
-    status = glCheckFramebufferStatus(GL_FRAMEBUFFER) ;
-    if(status != GL_FRAMEBUFFER_COMPLETE) {
-        NSLog(@"failed to make complete framebuffer object %x", status);
-    }
-    
-    
-    glReadPixels(0, 0, width, height, GL_BGRA, GL_UNSIGNED_BYTE, buffer);
+    glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
     
     
     glErCode = glGetError();
     
     cv::Mat tmp(height, width, CV_8UC4, buffer);
     
-    bool zeros = tmp.empty();
-         zeros = image.empty();
-    cv::flip(image, image, -1);
     
-    //cv::cvtColor(image, image, CV_RGBA2BGRA);
+    
+    
+    
+    //bool zeros = tmp.empty();
+    //zeros = image.empty();
+    cv::flip(image, image, 0);
     
     image = tmp.clone();
     
     glDeleteTextures(1, &renderedTexture );
     
-    glErCode = glGetError();
-    if (glErCode != GL_NO_ERROR)
-    {
-        std::cout << glErCode << std::endl;
-    }
-    
     free(buffer);
-
+    
 }
+
+
 
 /*I think no need to create a new cvMat since we have current frame*/
 -(void)GLTexture2CVMat:(cv::Mat&)frame{
     
     
-    // Create buffer for pixels
     GLuint bufferLength = width * height *4;
     GLubyte* buffer =(GLubyte*)malloc(bufferLength);
     
-   
-    // Read Pixels from OpenGL
-    //glPixelStorei(GL_PACK_ALIGNMENT, 4);
     
-    int glErCode;
     
-
-    glPixelStorei ( GL_UNPACK_ALIGNMENT , 1 ) ;
+    glPixelStorei ( GL_UNPACK_ALIGNMENT , 4 ) ;
     
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     
@@ -518,24 +560,19 @@
         NSLog(@"failed to make complete framebuffer object %x", status);
     }
     
+    glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
     
-    glReadPixels(0, 0, width, height, GL_BGRA, GL_UNSIGNED_BYTE, buffer);
+    cv::Mat tmp(height, width, CV_8UC4, buffer);
     
-
-    glErCode = glGetError();
-
-    cv::Mat image(height, width, CV_8UC4, buffer);
+    cv::flip(tmp, tmp, 0);
+    cv::cvtColor(tmp, tmp, CV_RGBA2BGRA);
     
-    bool zeros = image.empty();
-    cv::flip(image, image, 0);
-
-    //cv::cvtColor(image, image, CV_RGBA2BGRA);
     
-    frame = image.clone();
+    frame = tmp.clone();
     
-    //glDeleteTextures(1, &renderedTexture );
+    glDeleteTextures(1, &renderedTexture );
     
-    glErCode = glGetError();
+    int glErCode = glGetError();
     if (glErCode != GL_NO_ERROR)
     {
         std::cout << glErCode << std::endl;

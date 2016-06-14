@@ -6,8 +6,7 @@
 //  Copyright (c) 2015 tarasova_aa. All rights reserved.
 //
 
-#ifndef __Filters_OpenCV__MarkerDetector__
-#define __Filters_OpenCV__MarkerDetector__
+
 
 
 ////////////////////////////////////////////////////////////////////
@@ -37,16 +36,16 @@ public:
     
     MarkerDetector(CameraCalibration calibration);
     
-    void processFrame( Mat& frame);
-    
     const std::vector<Transformation>& getTransformations();
     
     void DrawDetectedMarkers(Mat& frame,std::vector<Marker>& detectedMarkers,cv::Scalar colorScalar);
     
+    //detection states
     void Step_grayscale(cv::Mat& frame);
     void Step_threshold(cv::Mat& frame);
     void Step_contours(cv::Mat& frame);
     void Step_candidates(cv::Mat& frame);
+    void processFrame( Mat& frame);
     
     
     
@@ -92,4 +91,4 @@ private:
     
 };
 
-#endif /* defined(__Filters_OpenCV__MarkerDetector__) */
+

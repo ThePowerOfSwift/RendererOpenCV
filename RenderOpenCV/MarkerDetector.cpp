@@ -1,8 +1,8 @@
 //
 //  MarkerDetector.cpp
-//  Filters_OpenCV
+//  RendererOpenCV
 //
-//  Created by Admin on 09.05.15.
+//  Created by Admin on 09.05.16.
 //  Copyright (c) 2015 tarasova_aa. All rights reserved.
 //
 
@@ -163,12 +163,12 @@ void MarkerDetector::performThreshold(cv::Mat& grayscale, cv::Mat& thresholdImg)
 {
     
      cv::adaptiveThreshold(grayscale,   // Input image
-     thresholdImg,// Result binary image
-     255,         //
-     cv::ADAPTIVE_THRESH_GAUSSIAN_C,
-     cv::THRESH_BINARY_INV,
-     11,
-     5
+                           thresholdImg,// Result binary image
+                           255,         //
+                           cv::ADAPTIVE_THRESH_GAUSSIAN_C,
+                           cv::THRESH_BINARY_INV,
+                           11,
+                           5
      );
     
 }

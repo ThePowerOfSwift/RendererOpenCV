@@ -50,6 +50,7 @@
     [videoManager startRunning];
     
     
+    cameraCalibrator = [[CalibrationWrapper alloc]init];
     
     cameraParams = CameraCalibration(6.24860291e+02 * (640./352.), 6.24860291e+02 * (480./288.), 640 * 0.5f, 480 * 0.5f);
     
@@ -75,8 +76,10 @@
     //[renderer CVMat2GLTexture:image];
     //
     dispatch_sync(dispatch_get_main_queue(), ^{
+        
+        //[cameraCalibrator drawCheccBoardCornersOnFrame:image];
     
-        markerDetector->processFrame(image);
+        //markerDetector->processFrame(image);
         
         
         [renderer drawFrame:image withTransformations:markerDetector->getTransformations()];
